@@ -1,0 +1,14 @@
+{
+    "name": "reservation-api",
+    "version": "2025.11.02",
+    "description": "Frog-Bites reservation service",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js",
+      "test": "node test.js"
+    },
+    "dependencies": {
+      "express": "^4.19.0"
+    }
+  }
+  
