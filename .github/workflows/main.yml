@@ -38,7 +38,7 @@ jobs:
        JF_PROJECT: llpd
 
     - name: Set JFrog CLI Config
-      run: jf npm-config --global=true --repo-resolve=llpd-npm --repo-deploy=llpd-npm
+      run: jf npm-config --global=true --repo-resolve=llpd-npm-dev --repo-deploy=llpd-npm-dev
 
     - name: build webapp
       run: |
