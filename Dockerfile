@@ -4,13 +4,14 @@ FROM node:20-alpine AS build
 ARG NPM_REGISTRY_URL="https://devreleplus.jfrog.io/artifactory/api/npm/llpd-npm-dev/"
 ARG NPM_AUTH_TOKEN
 
-# Configure npm for JFrog registry
-RUN npm config set registry $NPM_REGISTRY_URL && \
-    npm config set //${NPM_REGISTRY_URL#https://}:_authToken $NPM_AUTH_TOKEN && \
-    npm config set always-auth true
 WORKDIR /app
+
+# Create .npmrc file for authentication
+RUN echo "registry=${NPM_REGISTRY_URL}" > .npmrc && \
+    echo "//${NPM_REGISTRY_URL#https://}:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc && \
+    echo "always-auth=true" >> .npmrc
 COPY package.json package-lock.json* ./
-RUN npm install --omit=dev
+RUN npm install --omit=dev && rm -f .npmrc
 COPY . .
 # Run
 FROM node:20-alpine
