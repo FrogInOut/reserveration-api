@@ -66,10 +66,7 @@ jobs:
         push: true
         context: .
         platforms: linux/amd64,linux/arm64
-        tags: |
-          ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}:latest
-          ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
-          ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}:${{ steps.date.outputs.date }}
+        tags: ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}:${{ steps.date.outputs.date }}
         provenance: false
         build-args: |
           NPM_AUTH_TOKEN=${{ steps.setup-cli.outputs.oidc-token }}
