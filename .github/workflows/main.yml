@@ -45,11 +45,6 @@ jobs:
          jf npm ci
          jf npm publish
          npm run build
-    
-    - name: Attest
-      uses: actions/attest-build-provenance@v3
-      with:
-        subject-path: '${{ github.workspace }}/my-app'
           
     - name: Generate build timestamp
       id: date
