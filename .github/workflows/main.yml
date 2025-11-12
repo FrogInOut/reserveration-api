@@ -45,6 +45,12 @@ jobs:
          jf npm ci
          jf npm publish
          npm run build
+    
+    - name: Attest
+      uses: actions/attest-build-provenance@v3
+      with:
+        subject-path: '${{ github.workspace }}/my-app'
+          
     - name: Generate build timestamp
       id: date
       run: echo "date=$(date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_OUTPUT
@@ -70,7 +76,16 @@ jobs:
         provenance: false
         build-args: |
           NPM_AUTH_TOKEN=${{ steps.setup-cli.outputs.oidc-token }}
-      
+    
+    - name: Attest Docker Image and Send to JFrog Evidence
+      uses: actions/attest-build-provenance@v3
+      with:
+          # The 'oci://' prefix is required by JFrog to correctly parse the artifact type
+          subject-name: oci://${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
+          
+          # This links the attestation directly to the image digest from the build step
+          subject-digest: ${{ steps.build.outputs.digest }}
+          
     - name: docker scan via JFrog 
       if: ${{ false }}
       run: |
