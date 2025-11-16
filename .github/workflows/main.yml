@@ -73,6 +73,7 @@ jobs:
           NPM_AUTH_TOKEN=${{ steps.setup-cli.outputs.oidc-token }}
     
     - name: Attest Docker Image and Send to JFrog Evidence
+      if: ${{ false }}
       uses: actions/attest-build-provenance@v3
       with:
           # The 'oci://' prefix is required by JFrog to correctly parse the artifact type
