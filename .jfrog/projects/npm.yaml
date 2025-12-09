@@ -2,7 +2,5 @@ version: 1
 type: npm
 resolver:
     repo: llpd-npm-dev-remote
-    serverId: devreleplus
 deployer:
     repo: llpd-npm-local-dev
-    serverId: devreleplus
