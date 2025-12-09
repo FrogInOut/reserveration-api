@@ -1,6 +1,0 @@
-version: 1
-type: npm
-resolver:
-    repo: llpd-npm-dev-remote
-deployer:
-    repo: llpd-npm-local-dev
