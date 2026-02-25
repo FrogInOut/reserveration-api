@@ -106,7 +106,7 @@ jobs:
            jf rt build-add-git
            jf rt build-publish
     - name: Sleep for 60 seconds
-      if: ${{ true }}
+      if: ${{ false }}
       uses: jakejarvis/wait-action@master
       with:
         time: '60s'
