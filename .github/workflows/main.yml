@@ -1,4 +1,4 @@
-name: Build App
+name: reservation-api
 on:
   push:
     branches: [ "main" ]
@@ -104,7 +104,6 @@ jobs:
            jf rt build-collect-env
            jf rt build-add-git
            jf rt build-publish
-
     - name: Sleep for 60 seconds
       if: ${{ false }}
       uses: jakejarvis/wait-action@master
@@ -118,4 +117,5 @@ jobs:
 
     - name: Create AppTrust Application Version
       run: |
-            jf at version-create reservation 1.0.${{ github.run_number }}
+            jf at version-create reservation 1.0.${{ github.run_number }} \
+              --source-type-builds "name=reservation-api, id=${{ github.run_number }}"
