@@ -11,6 +11,7 @@ permissions:
   id-token: write # for creating OIDC tokens for signing.
   packages: write # for uploading attestations.
   contents: read
+  issues: write  # Required for FastCI
 
 
 jobs:
@@ -25,6 +26,12 @@ jobs:
       JFROG_CLI_LOG_LEVEL: DEBUG
 
     steps:
+    
+    - uses: jfrog-fastci/fastci@v0
+      with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+          accept_terms: 'yes'
+          
     - name: Checkout the repository
       uses: actions/checkout@v4
 
