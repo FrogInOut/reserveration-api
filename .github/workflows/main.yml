@@ -119,4 +119,4 @@ jobs:
     - name: Create AppTrust Application Version
       run: |
             jf at version-create reservation 1.0.${{ github.run_number }} \
-              --source-type-builds "name=reservation-api, id=${{ github.run_number }} repo-key=llpd-build-info"
+              --source-type-builds "name=reservation-api, id=${{ github.run_number }}, repo-key=llpd-build-info"
