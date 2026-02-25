@@ -112,3 +112,8 @@ jobs:
     - name: JFrog build scan
       run: |
             jf build-scan --vuln --fail=false
+
+    - name: Create AppTrust Application Version
+      run: |
+            jf at version-create reservation 1.0.${{ github.run_number }} \
+              --source-type-builds "name=$JFROG_CLI_BUILD_NAME, id=$JFROG_CLI_BUILD_NUMBER"
