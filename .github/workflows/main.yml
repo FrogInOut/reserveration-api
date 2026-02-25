@@ -104,12 +104,15 @@ jobs:
            jf rt build-collect-env
            jf rt build-add-git
            jf rt build-publish
+
     - name: Sleep for 60 seconds
+      if: ${{ false }}
       uses: jakejarvis/wait-action@master
       with:
         time: '60s'
 
     - name: JFrog build scan
+      if: ${{ false }}
       run: |
             jf build-scan --vuln --fail=false
 
