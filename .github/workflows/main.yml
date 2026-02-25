@@ -106,10 +106,10 @@ jobs:
            jf rt build-add-git
            jf rt build-publish
     - name: Sleep for 60 seconds
-      if: ${{ false }}
+      if: ${{ true }}
       uses: jakejarvis/wait-action@master
       with:
-        time: '60s'
+        time: '30s'
 
     - name: JFrog build scan
       if: ${{ false }}
